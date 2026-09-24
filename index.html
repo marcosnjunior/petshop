@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo Pet | Petshop & Loja Online</title>
+    <!-- Font Awesome 6 (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET E ESTILOS GLOBAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #faf9f6;
+            color: #2e2e2e;
+            line-height: 1.5;
+            transition: background 0.2s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #3a5e4c;
+        }
+
+        .logo i {
+            color: #e8b44b;
+            font-size: 2rem;
+        }
+
+        .logo span {
+            color: #3a5e4c;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span i {
+            color: #e8b44b;
+            font-size: 1.4rem;
+            margin-left: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3d4a44;
+            transition: 0.2s;
+            font-size: 1rem;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #e8b44b;
+            border-bottom-color: #e8b44b;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-icons .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.6rem;
+            color: #3a5e4c;
+            transition: 0.2s;
+        }
+
+        .header-icons .cart-icon:hover {
+            color: #e8b44b;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: #e8b44b;
+            color: #2e2e2e;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        /* ===== BANNER PRINCIPAL ===== */
+        .hero {
+            background: linear-gradient(135deg, #e8f0e9 0%, #d4e3d9 100%);
+            border-radius: 32px;
+            margin: 30px 0;
+            padding: 50px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .hero-text {
+            flex: 1 1 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1e3a2f;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero-text h1 i {
+            color: #e8b44b;
+            margin-right: 8px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2f4a3c;
+            margin-bottom: 28px;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3a5e4c;
+            color: white;
+            font-weight: 600;
+            padding: 14px 34px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 8px 16px rgba(58, 94, 76, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #2a4638;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(58, 94, 76, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #3a5e4c;
+            color: #3a5e4c;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #3a5e4c;
+            color: white;
+        }
+
+        .hero-img {
+            flex: 0 0 280px;
+            font-size: 9rem;
+            text-align: center;
+            color: #3a5e4c;
+            opacity: 0.9;
+        }
+
+        /* ===== SEÇÃO PRODUTOS ===== */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3a2f;
+            margin: 40px 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #e8b44b;
+        }
+
+        .section-sub {
+            color: #5b6e63;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            margin: 30px 0 50px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            padding: 22px 18px 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #edf2ee;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: #d9e3dc;
+        }
+
+        .product-icon {
+            font-size: 3.4rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #3a5e4c;
+        }
+
+        .product-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e3a2f;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #62756a;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #3a5e4c;
+            margin-bottom: 16px;
+        }
+
+        .product-price small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #7f8f86;
+        }
+
+        .add-to-cart {
+            background-color: #f2f7f4;
+            border: none;
+            padding: 12px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2f4a3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            border: 1px solid #d0dfd5;
+        }
+
+        .add-to-cart i {
+            color: #e8b44b;
+            font-size: 1.1rem;
+        }
+
+        .add-to-cart:hover {
+            background-color: #3a5e4c;
+            color: white;
+            border-color: #3a5e4c;
+        }
+
+        .add-to-cart:hover i {
+            color: #f7e05e;
+        }
+
+        /* ===== CARRINHO LATERAL (MODAL) ===== */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.25s ease;
+            z-index: 200;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .cart-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .cart-panel {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            height: 100%;
+            padding: 28px 22px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+            overflow-y: auto;
+        }
+
+        .cart-overlay.active .cart-panel {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .cart-header h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e3a2f;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #6b7f74;
+            transition: 0.2s;
+        }
+
+        .close-cart:hover {
+            color: #e8b44b;
+        }
+
+        .cart-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafcfb;
+            padding: 14px 12px;
+            border-radius: 18px;
+            border: 1px solid #e2ece6;
+        }
+
+        .cart-item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            color: #1e3a2f;
+            font-size: 1rem;
+        }
+
+        .cart-item-price {
+            color: #3a5e4c;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item-actions button {
+            background: white;
+            border: 1px solid #cbd9d0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #2f4a3c;
+            transition: 0.15s;
+        }
+
+        .cart-item-actions button:hover {
+            background: #e8b44b;
+            border-color: #e8b44b;
+            color: #1e3a2f;
+        }
+
+        .cart-item-qty {
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: transparent !important;
+            border: none !important;
+            color: #b33a3a !important;
+            font-size: 1.2rem !important;
+            width: auto !important;
+            height: auto !important;
+            padding: 0 4px !important;
+        }
+
+        .remove-item:hover {
+            color: #8b1e1e !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .cart-total {
+            border-top: 2px solid #e2ece6;
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1e3a2f;
+            margin-bottom: 20px;
+        }
+
+        .cart-total span:last-child {
+            color: #3a5e4c;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            background-color: #e8b44b;
+            color: #1e3a2f;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 16px rgba(232, 180, 75, 0.3);
+        }
+
+        .checkout-btn:hover {
+            background-color: #dba63b;
+            transform: scale(1.02);
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            color: #8c9f94;
+            padding: 40px 0;
+            font-size: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .empty-cart-message i {
+            font-size: 3rem;
+            color: #cfdfd6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1e2f27;
+            color: #d4e3d9;
+            padding: 40px 0 25px;
+            margin-top: 70px;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: #e8b44b;
+            font-size: 1.2rem;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #bdd0c5;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #e8b44b;
+        }
+
+        .footer-col i {
+            margin-right: 8px;
+            color: #e8b44b;
+            width: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2e4439;
+            padding-top: 22px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #9bb3a7;
+        }
+
+        /* ===== TOAST NOTIFICAÇÃO ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: #1e2f27;
+            color: #f0f7f3;
+            padding: 14px 30px;
+            border-radius: 60px;
+            font-weight: 500;
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s ease;
+            z-index: 300;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .toast i {
+            color: #e8b44b;
+            font-size: 1.3rem;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 700px) {
+            .header-flex {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .header-icons {
+                justify-content: flex-end;
+            }
+
+            .hero {
+                padding: 35px 25px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero-img {
+                font-size: 6rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .cart-panel {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container header-flex">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <span>Amigo<span>Pet</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Início</a>
+                <a href="#">Produtos</a>
+                <a href="#">Serviços</a>
+                <a href="#">Contato</a>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon" id="cartIconBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- BANNER -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1><i class="fas fa-dog"></i> Tudo para o seu melhor amigo</h1>
+                <p>Ração premium, brinquedos, banho e tosa com carinho. Compre online e receba em casa.</p>
+                <a href="#" class="btn" id="verProdutosBtn">Ver produtos <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="hero-img">
+                <i class="fas fa-cat"></i>
+                <i class="fas fa-dog" style="font-size: 5rem; display: block; margin-top: -10px;"></i>
+            </div>
+        </section>
+
+        <!-- PRODUTOS -->
+        <h2 class="section-title"><i class="fas fa-store"></i> Destaques da loja</h2>
+        <p class="section-sub">Escolha os melhores itens para cães e gatos</p>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Os produtos são renderizados via JavaScript -->
+        </div>
+    </main>
+
+    <!-- CARRINHO LATERAL (OVERLAY) -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-bag" style="color:#e8b44b;"></i> Seu carrinho</h3>
+                <button class="close-cart" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- itens do carrinho -->
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalValue">R$ 0,00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn"><i class="fas fa-check-circle"></i> Finalizar pedido</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item adicionado ao carrinho!</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-paw"></i> Amigo Pet</h4>
+                    <p>Cuidando do seu pet com amor e qualidade desde 2015.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone-alt"></i> (11) 98765-4321</p>
+                    <p><i class="fas fa-envelope"></i> contato@amigopet.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. dos Animais, 123 - São Paulo</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Horários</h4>
+                    <p>Seg a Sex: 8h - 20h</p>
+                    <p>Sáb: 9h - 18h</p>
+                    <p>Dom: 10h - 16h</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Redes sociais</h4>
+                    <a href="#"><i class="fab fa-instagram"></i> @amigopet</a>
+                    <a href="#"><i class="fab fa-facebook-f"></i> /amigopet</a>
+                    <a href="#"><i class="fab fa-whatsapp"></i> (11) 98765-4321</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Amigo Pet - Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // ========== DADOS DOS PRODUTOS ==========
+            const products = [
+                { id: 1, name: 'Ração Premium Cães', desc: 'Sabor frango e arroz, 15kg', price: 189.90, icon: 'fa-dog' },
+                { id: 2, name: 'Ração Gatos Castrados', desc: 'Sabor salmão, 10kg', price: 159.90, icon: 'fa-cat' },
+                { id: 3, name: 'Brinquedo Mordedor', desc: 'Resistente e atóxico', price: 49.90, icon: 'fa-bone' },
+                { id: 4, name: 'Arranhador para Gatos', desc: 'Torre com sisal', price: 129.90, icon: 'fa-tree' },
+                { id: 5, name: 'Coleira Peitoral', desc: 'Ajustável, confortável', price: 79.90, icon: 'fa-tag' },
+                { id: 6, name: 'Tapete Higiênico', desc: 'Pacote com 30 unidades', price: 89.90, icon: 'fa-layer-group' }
+            ];
+
+            // ========== ESTADO DO CARRINHO ==========
+            let cart = []; // cada item: { id, name, price, quantity, icon, desc }
+
+            // Elementos DOM
+            const productsGrid = document.getElementById('productsGrid');
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartTotalValue = document.getElementById('cartTotalValue');
+            const cartCount = document.getElementById('cartCount');
+            const cartOverlay = document.getElementById('cartOverlay');
+            const cartIconBtn = document.getElementById('cartIconBtn');
+            const closeCartBtn = document.getElementById('closeCartBtn');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            // ========== RENDERIZAR PRODUTOS ==========
+            function renderProducts() {
+                productsGrid.innerHTML = products.map(product => `
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas ${product.icon}"></i>
+                        </div>
+                        <h3>${product.name}</h3>
+                        <p class="product-desc">${product.desc}</p>
+                        <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')} <small>/un</small></div>
+                        <button class="add-to-cart" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Adicionar
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            // ========== RENDERIZAR CARRINHO ==========
+            function renderCart() {
+                // Atualiza contador do ícone
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+
+                // Se carrinho vazio
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart-message">
+                            <i class="fas fa-shopping-bag"></i>
+                            <p>Seu carrinho está vazio</p>
+                            <small>Adicione produtos para continuar</small>
+                        </div>
+                    `;
+                    cartTotalValue.textContent = 'R$ 0,00';
+                    return;
+                }
+
+                // Preenche itens
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-item-info">
+                            <span class="cart-item-title">${item.name}</span>
+                            <span class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="decrease-qty" data-id="${item.id}">−</button>
+                            <span class="cart-item-qty">${item.quantity}</span>
+                            <button class="increase-qty" data-id="${item.id}">+</button>
+                            <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Calcula total
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotalValue.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            }
+
+            // ========== ADICIONAR AO CARRINHO ==========
+            function addToCart(productId) {
+                const product = products.find(p => p.id === productId);
+                if (!product) return;
+
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1,
+                        icon: product.icon,
+                        desc: product.desc
+                    });
+                }
+
+                renderCart();
+                showToast(`${product.name} adicionado!`, 'fa-check-circle');
+            }
+
+            // ========== REMOVER ITEM ==========
+            function removeItem(productId) {
+                cart = cart.filter(item => item.id !== productId);
+                renderCart();
+                showToast('Item removido do carrinho', 'fa-trash-alt');
+            }
+
+            // ========== ALTERAR QUANTIDADE ==========
+            function increaseQty(productId) {
+                const item = cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity += 1;
+                    renderCart();
+                }
+            }
+
+            function decreaseQty(productId) {
+                const item = cart.find(item => item.id === productId);
+                if (!item) return;
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    removeItem(productId);
+                    return;
+                }
+                renderCart();
+            }
+
+            // ========== TOAST ==========
+            let toastTimeout;
+            function showToast(message, iconClass = 'fa-check-circle') {
+                toastMessage.textContent = message;
+                toast.querySelector('i').className = `fas ${iconClass}`;
+                toast.classList.add('show');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2200);
+            }
+
+            // ========== ABRIR / FECHAR CARRINHO ==========
+            function openCart() {
+                cartOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeCart() {
+                cartOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // ========== CHECKOUT SIMULADO ==========
+            function handleCheckout() {
+                if (cart.length === 0) {
+                    showToast('Seu carrinho está vazio!', 'fa-exclamation-circle');
+                    return;
+                }
+                // Simula finalização
+                showToast('Pedido finalizado com sucesso! 🎉', 'fa-check-circle');
+                // Limpa o carrinho após 1.5s (apenas demonstração)
+                setTimeout(() => {
+                    cart = [];
+                    renderCart();
+                    closeCart();
+                }, 1500);
+            }
+
+            // ========== EVENTOS ==========
+            function setupEventListeners() {
+                // Delegação para botões "Adicionar ao carrinho"
+                productsGrid.addEventListener('click', (e) => {
+                    const addBtn = e.target.closest('.add-to-cart');
+                    if (addBtn) {
+                        const id = Number(addBtn.dataset.id);
+                        addToCart(id);
+                    }
+                });
+
+                // Delegação para ações dentro do carrinho (increase, decrease, remove)
+                cartItemsContainer.addEventListener('click', (e) => {
+                    const target = e.target;
+                    const itemId = target.closest('.cart-item')?.dataset.id;
+                    if (!itemId) return;
+                    const id = Number(itemId);
+
+                    if (target.closest('.increase-qty')) {
+                        increaseQty(id);
+                    } else if (target.closest('.decrease-qty')) {
+                        decreaseQty(id);
+                    } else if (target.closest('.remove-item')) {
+                        removeItem(id);
+                    }
+                });
+
+                // Abrir carrinho
+                cartIconBtn.addEventListener('click', openCart);
+
+                // Fechar carrinho (botão X)
+                closeCartBtn.addEventListener('click', closeCart);
+
+                // Fechar ao clicar fora do painel (no overlay)
+                cartOverlay.addEventListener('click', (e) => {
+                    if (e.target === cartOverlay) {
+                        closeCart();
+                    }
+                });
+
+                // Tecla ESC fecha o carrinho
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && cartOverlay.classList.contains('active')) {
+                        closeCart();
+                    }
+                });
+
+                // Checkout
+                checkoutBtn.addEventListener('click', handleCheckout);
+
+                // Botão "Ver produtos" rola até a grade (apenas conforto)
+                document.getElementById('verProdutosBtn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    productsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            // ========== INICIALIZAÇÃO ==========
+            function init() {
+                renderProducts();
+                renderCart();
+                setupEventListeners();
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>
